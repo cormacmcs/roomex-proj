@@ -1,0 +1,91 @@
+<form class="form" [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <mat-select formControlName="title">
+      <mat-option *ngFor="let title of config.titles" [value]="title">
+        {{ title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="First Name" formControlName="firstName" />
+    <mat-error *ngIf="hasError('firstName', 'required')"
+      >First name is required</mat-error
+    >
+    <mat-error *ngIf="hasError('firstName', 'pattern')"
+      >First name cannot contain any numbers</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Last Name" formControlName="lastName" />
+    <mat-error *ngIf="hasError('lastName', 'required')"
+      >Last name is required</mat-error
+    >
+    <mat-error *ngIf="hasError('firstName', 'pattern')"
+      >Last name cannot contain any numbers</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Username" formControlName="userName" />
+    <mat-error *ngIf="hasError('userName', 'minlength')"
+      >User name must be least 5 characters</mat-error
+    >
+    <mat-error *ngIf="hasError('userName', 'email')"
+      >Email format unacceptable</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      type="text"
+      placeholder="Favourite Movie"
+      aria-label="Number"
+      matInput
+      [formControl]="form.get('favouriteMovie')"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let movie of userFormService.matchedMovies | async"
+        [value]="movie.Title"
+      >
+        {{ movie.Title }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="hasError('favouriteMovie', 'movie')"
+      >Please select a movie from the list</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Country</mat-label>
+    <mat-select formControlName="country">
+      <mat-option *ngFor="let country of config.countries" [value]="country">
+        {{ country }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="hasError('country', 'required')"
+      >Country is required</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Post Code" formControlName="postCode" />
+    <mat-error *ngIf="hasError('postCode', 'pattern')"
+      >You must input a valid United Kingdom post code</mat-error
+    >
+    <mat-error *ngIf="hasError('postCode', 'minlength')"
+      >Post code must be at least 6 characters</mat-error
+    >
+    <mat-error *ngIf="hasError('postCode', 'maxlength')"
+      >Post code must not be more than 10 characters</mat-error
+    >
+    <mat-error *ngIf="hasError('postCode', 'required')"
+      >Post code is required</mat-error
+    >
+  </mat-form-field>
+  <button
+    class="submit-button"
+    mat-raised-button
+    (click)="validateSubmit($event)"
+  >
+    Submit
+  </button>
+</form>
