@@ -19,7 +19,7 @@ export class ApiService {
         observe: 'response'
       })
       .pipe(
-        map((res: HttpResponse<any>) => res.body.Search),
+        map((res: HttpResponse<any>) => res.body),
         catchError((e: HttpErrorResponse) => throwError(e))
       );
   }

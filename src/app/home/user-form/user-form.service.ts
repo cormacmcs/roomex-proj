@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ApiService } from '../../services/api.service';
 
 export interface Movies {
@@ -25,9 +26,10 @@ export class UserFormService {
     }
   }
 
-  getMovies(title: string) {
+  getMovies(title: string): void {
     this.api
       .get('http://www.omdbapi.com/?apikey=83513884&type=%20movie&s=' + title)
+      .pipe(map(res => res.Search))
       .subscribe(e => {
         this.movieList = e;
         this.matchedMovies.next(e);

@@ -132,7 +132,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     return this.form.controls[controlName].hasError(errorName);
   }
 
-  public validateSubmit(ev: Event) {
+  public validateSubmit(ev: Event): void {
     if (this.form.valid) {
       ev.preventDefault();
       this.formSubmit.next(this.form.value);
