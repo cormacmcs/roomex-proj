@@ -17,7 +17,7 @@ describe('UserFormComponent', () => {
   const validatorsService: ValidatorsService = new ValidatorsService();
 
   beforeEach(async(() => {
-    const spy = jasmine.createSpyObj('UserFormService', [
+    const userFormSpy = jasmine.createSpyObj('UserFormService', [
       'movieExists',
       'getMovies'
     ]);
@@ -40,7 +40,7 @@ describe('UserFormComponent', () => {
         },
         {
           provide: UserFormService,
-          useValue: spy
+          useValue: userFormSpy
         },
         { provide: FormBuilder, useValue: formBuilder }
       ]

@@ -12,6 +12,16 @@ export interface Movies {
   Poster: string;
 }
 
+export interface UserForm {
+  title: string;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  favouriteMovie: string;
+  country: string;
+  postCode: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })

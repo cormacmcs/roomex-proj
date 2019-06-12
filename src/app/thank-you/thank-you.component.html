@@ -1,5 +1,16 @@
 <div class="container">
   <div class="content">
     <h1>Thank You</h1>
+    <div *ngIf="results">
+      <div>
+        Name: {{ results.title }} {{ results.firstName }} {{ results.lastName }}
+      </div>
+      <div *ngIf="results.userName">Username: {{ results.userName }}</div>
+      <div *ngIf="results.favouriteMovie">
+        Favourite movie: {{ results.favouriteMovie }}
+      </div>
+      <div *ngIf="results.country">Country: {{ results.country }}</div>
+      <div *ngIf="results.postCode">Post code: {{ results.postCode }}</div>
+    </div>
   </div>
 </div>

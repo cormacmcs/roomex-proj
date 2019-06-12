@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from '../home/home.service';
+import { UserForm } from '../home/user-form/user-form.service';
 
 @Component({
   selector: 'app-thank-you',
@@ -6,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./thank-you.component.scss']
 })
 export class ThankYouComponent implements OnInit {
-  constructor() {}
+  results: UserForm;
+  constructor(private homeService: HomeService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.results = this.homeService.getFormResults();
+  }
 }
